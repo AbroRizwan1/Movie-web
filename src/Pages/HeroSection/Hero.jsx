@@ -33,6 +33,8 @@ export default function Hero() {
     });
   }, []);
 
+  // console.log(trendMovies);
+
   const goTo = useCallback(
     (idx) => {
       const len = trendMovies.length;
