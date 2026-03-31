@@ -1,16 +1,102 @@
-# React + Vite
+# 🎬 Movie Website (TMDB API)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive movie web application built with **React** that fetches real-time movie data from the **TMDB API**. The application allows users to explore popular movies, view detailed information, and watch trailers directly from YouTube.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
 
-## React Compiler
+- 🎥 Display popular movies from TMDB API  
+- 📄 Movie details page with full information  
+- ▶️ Watch trailers via YouTube integration  
+- ⚡ Fast and responsive UI  
+- 🔄 Dynamic data fetching using Axios  
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React.js  
+- JavaScript (ES6+)  
+- Axios  
+- TMDB API  
+- CSS / Tailwind CSS (if used)  
+
+---
+
+## 📁 Project Structure
+
+movie-app/
+├── public/
+└── src/
+    ├── assets/
+    ├── components/
+    │   ├── Button.jsx
+    │   ├── Footer.jsx
+    │   ├── Heading.jsx
+    │   ├── Navbar.jsx
+    │   ├── Paragraph.jsx
+    │   └── TrailerModal.jsx
+    ├── pages/
+    │   ├── HeroSection/
+    │   │   ├── Hero.jsx
+    │   │   ├── LeftSide.jsx
+    │   │   ├── ThumbCard.jsx
+    │   │   └── ThumbnailStrip.jsx
+    │   ├── Movies/
+    │   │   ├── Categories.jsx
+    │   │   ├── MovieCard.jsx
+    │   │   ├── MoviesSection.jsx
+    │   │   └── StarRating.jsx
+    │   ├── ViewMovies/
+    │   └── LandingPage.jsx
+    ├── service/
+    │   └── Api.js
+    ├── App.jsx
+    └── main.jsx
+
+## ⚙️ Installation & Setup
+
+Follow these steps to run the project locally:
+
+```bash
+# Clone the repository
+git clone https://github.com/AbroRizwan1/movie-website.git
+
+# Navigate to project folder
+cd movie-app
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+🔑 API Setup
+
+This project uses TMDB API.
+
+Create account on TMDB
+Get your API key
+Add it in your project (e.g. .env file)
+VITE_TMDB_API_KEY=your_api_key_here
+
+Upcoming Features
+🔍 Search functionality
+⏳ Loading states and skeleton UI
+❤️ Favorite movies feature
+🎨 UI improvements
+
+📌 Notes
+
+This project is currently under development. More features and improvements will be added soon.
+
+👨‍💻 Author
+Rizwan Abro
+Frontend Developer (React)
+📄 License
+
+This project is open source and available for learning purposes.
+
+
+
