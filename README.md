@@ -71,7 +71,7 @@ npm install
 
 # Start development server
 npm run dev
-
+----
 🔑 API Setup
 
 This project uses TMDB API.
