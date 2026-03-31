@@ -32,14 +32,10 @@ This project uses TMDB API.
 - Get your API key  
 - Add it in your project inside `.env` file  
 
-```env id="env_tmdb"
+```env
 VITE_TMDB_API_KEY=your_api_key_here
 
-
-
-
-
-📁 Project Structure
+##📁 Project Structure
 
 movie-website/
 ├── public/
@@ -70,10 +66,6 @@ movie-website/
     ├── App.jsx
     └── main.jsx
 
-
-
-
-
 ## 🚧 Upcoming Features
 🔍 Search functionality
 ⏳ Loading states and skeleton UI
@@ -95,3 +87,5 @@ This project is open source and available for learning purposes.
 
 
 
+
+    
