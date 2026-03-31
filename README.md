@@ -28,38 +28,6 @@ A responsive movie web application built with **React** that fetches real-time m
 
 
 
-
-## 🔑 API Setup
-
-This project uses TMDB API.
-
-Create account on TMDB
-Get your API key
-Add it in your project (e.g. .env file)
-VITE_TMDB_API_KEY=your_api_key_here
-
-Upcoming Features
-🔍 Search functionality
-⏳ Loading states and skeleton UI
-❤️ Favorite movies feature
-🎨 UI improvements
-
-📌 Notes
-
-This project is currently under development. More features and improvements will be added soon.
-
-👨‍💻 Author
-Rizwan Abro
-Frontend Developer (React)
-📄 License
-
-This project is open source and available for learning purposes.
-
-
-
-
-
-
 ## 📁 Project Structure
 
 movie-app/
@@ -108,4 +76,30 @@ npm install
 # Start development server
 npm run dev
 
----
+
+## 🔑 API Setup
+
+This project uses TMDB API.
+
+Create account on TMDB
+Get your API key
+Add it in your project (e.g. .env file)
+VITE_TMDB_API_KEY=your_api_key_here
+
+## Upcoming Features
+🔍 Search functionality
+⏳ Loading states and skeleton UI
+❤️ Favorite movies feature
+🎨 UI improvements
+
+## 📌 Notes
+
+This project is currently under development. More features and improvements will be added soon.
+
+## 👨‍💻 Author
+Rizwan Abro
+Frontend Developer (React)
+## 📄 License
+
+This project is open source and available for learning purposes.
+
