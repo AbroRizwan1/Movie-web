@@ -20,7 +20,7 @@ A responsive movie web application built with **React** that fetches real-time m
 - JavaScript (ES6+)  
 - Axios  
 - TMDB API  
-- CSS / Tailwind CSS (if used)  
+- CSS / Tailwind CSS  
 
 ---
 
