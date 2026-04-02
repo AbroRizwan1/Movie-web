@@ -1,91 +1,87 @@
-# 🎬 Movie Website (TMDB API)
+# 🎬 CineMax — Movie Discovery App
 
-A responsive movie web application built with **React** that fetches real-time movie data from the **TMDB API**. The application allows users to explore popular movies, view detailed information, and watch trailers directly from YouTube.
+A responsive movie discovery app built with React and powered by the TMDB API. Explore trending movies, view detailed info, and watch trailers — all in a cinematic dark UI.
+
+🔗 [Live Demo](https://abrorizwan1.github.io/Movie-web/) · [GitHub](https://github.com/AbroRizwan1/Movie-web)
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
-- 🎥 Display popular movies from TMDB API  
-- 📄 Movie details page with full information  
-- ▶️ Watch trailers via YouTube integration  
-- ⚡ Fast and responsive UI  
-- 🔄 Dynamic data fetching using Axios  
+- 🎥 Browse popular & trending movies from TMDB
+- 📄 Detailed movie pages with ratings, genres & overview
+- ▶️ Watch official trailers via YouTube integration
+- ❤️ Favourites system with LocalStorage persistence
+- ⚡ Fast, fully responsive dark UI
 
 ---
 
 ## 🛠️ Tech Stack
 
-- React.js  
-- JavaScript (ES6+)  
-- Axios  
-- TMDB API  
-- CSS / Tailwind CSS  
+| Technology | Purpose |
+|---|---|
+| React.js | UI & component architecture |
+| React Router DOM | Page navigation |
+| Tailwind CSS | Styling & responsive design |
+| Axios | API data fetching |
+| TMDB API | Movie data & trailers |
 
 ---
 
-## 🔑 API Setup
+## 🚀 Getting Started
 
-This project uses TMDB API.
+### 1 — Clone the repo
+```bash
+git clone https://github.com/AbroRizwan1/Movie-web.git
+cd Movie-web
+```
 
-- Create an account on TMDB  
-- Get your API key  
-- Add it in your project inside `.env` file  
+### 2 — Install dependencies
+```bash
+npm install
+```
 
+### 3 — Setup environment variables
+
+Create a `.env` file in the root:
 ```env
 VITE_TMDB_API_KEY=your_api_key_here
+```
 
-##📁 Project Structure
+Get your free API key at [themoviedb.org](https://www.themoviedb.org/)
 
-movie-website/
-├── public/
-└── src/
-    ├── assets/
-    ├── components/
-    │   ├── Button.jsx
-    │   ├── Footer.jsx
-    │   ├── Heading.jsx
-    │   ├── Navbar.jsx
-    │   ├── Paragraph.jsx
-    │   └── TrailerModal.jsx
-    ├── pages/
-    │   ├── HeroSection/
-    │   │   ├── Hero.jsx
-    │   │   ├── LeftSide.jsx
-    │   │   ├── ThumbCard.jsx
-    │   │   └── ThumbnailStrip.jsx
-    │   ├── Movies/
-    │   │   ├── Categories.jsx
-    │   │   ├── MovieCard.jsx
-    │   │   ├── MoviesSection.jsx
-    │   │   └── StarRating.jsx
-    │   ├── ViewMovies/
-    │   └── LandingPage.jsx
-    ├── service/
-    │   └── Api.js
-    ├── App.jsx
-    └── main.jsx
+### 4 — Run locally
+```bash
+npm run dev
+```
 
-## 🚧 Upcoming Features
-🔍 Search functionality
-⏳ Loading states and skeleton UI
-❤️ Favorite movies feature
-🎨 UI improvements
-📌 Notes
+---
 
-This project is currently under development. More features and improvements will be added soon.
+## 📁 Project Structure
+```
+src/
+├── components/
+│   ├── Navbar.jsx
+│   ├── Footer.jsx
+│   └── TrailerModal.jsx
+├── pages/
+│   ├── HeroSection/
+│   ├── Movies/
+│   └── ViewMovies/
+├── service/
+│   └── Api.js
+├── App.jsx
+└── main.jsx
+```
 
-##👨‍💻 Author
+---
 
-Rizwan Abro
-Frontend Developer (React)
+## 👨‍💻 Author
 
-##📄 License
+**Rizwan Abro** — Frontend Developer (React)
 
-This project is open source and available for learning purposes.
+---
 
+## 📄 License
 
-
-
-
-    
+Open source — available for learning purposes.
