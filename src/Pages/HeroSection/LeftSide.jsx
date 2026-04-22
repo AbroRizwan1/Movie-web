@@ -27,8 +27,6 @@ const LeftSide = ({ infoVisible, m }) => {
     try {
       const key = await getMovieTrailer(id); // 👈 API se key
 
-      console.log("Trailer Key:", key);
-
       setTrailerKey(key); // store key
       setShowTrailer(true); // modal open
     } catch (error) {

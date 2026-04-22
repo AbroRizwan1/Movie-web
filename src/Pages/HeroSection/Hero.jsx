@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import LeftSide from "./LeftSide";
 import ThumbnailStrip from "./ThumbnailStrip";
 import { getTrendingMovies } from "../../Service/Api";
+import Loader from "../../Components/Loader";
 
 const INTERVAL = 5000;
 
@@ -19,21 +20,28 @@ export default function Hero() {
   const stripRef = useRef(null);
 
   const [trendMovies, setTrendMovies] = useState([]);
-  useEffect(() => {
-    const fetchTrending = async () => {
+  const [loading, setloading] = useState(false);
+  const [error, setError] = useState(null);
+
+
+  const fetchTrending = async () => {
+    try {
+      setloading(true);
+      setError(null);
+
       const data = await getTrendingMovies();
       setTrendMovies(data);
-    };
-    fetchTrending();
-  }, []);
+
+    } catch (error) {
+      setError(error?.message || "Something Went wrong")
+    } finally {
+      setloading(false)
+    }
+  };
 
   useEffect(() => {
-    let categories = trendMovies.filter((g) => {
-      return g.genre_ids;
-    });
+    fetchTrending();
   }, []);
-
-  // console.log(trendMovies);
 
   const goTo = useCallback(
     (idx) => {
@@ -88,57 +96,75 @@ export default function Hero() {
   const m = trendMovies[current] || trendMovies[0];
 
   return (
-    <div className="relative w-full h-screen min-h-[500px] max-h-[900px] overflow-hidden bg-black  ">
-      {/* ── Full-bleed Backdrop ── */}
-      {prevIdx !== null && (
-        <img
-          src={
-            m?.backdrop_path
-              ? `https://image.tmdb.org/t/p/original${m.backdrop_path}`
-              : "/fallback.jpg"
+
+    <div>
+      {loading ? (
+        <Loader variant="reel" text="Loading movies..." fullscreen />
+      ) : error ? (
+        <div className="text-center ">
+          <ErrorMessage message={error} variant="fullscreen" onRetry={fetchTrending} />
+          <p className="text-sm">{error}</p>
+        </div>
+      ) : (
+        <div className="relative w-full h-screen min-h-[500px] max-h-[900px] overflow-hidden bg-black  ">
+
+
+          {/* ── Full-bleed Backdrop ── */}
+
+          {
+            prevIdx !== null && (
+              <img
+                src={
+                  m?.backdrop_path
+                    ? `https://image.tmdb.org/t/p/original${m.backdrop_path}`
+                    : "/fallback.jpg"
+                }
+                alt={m?.title}
+                className="absolute inset-0 w-full h-full  object-cover z-[1]"
+              />
+            )
           }
-          alt={m?.title}
-          className="absolute inset-0 w-full h-full  object-cover z-[1]"
-        />
-      )}
-      <img
-        key={current}
-        src={
-          m?.backdrop_path
-            ? `https://image.tmdb.org/t/p/original${m.backdrop_path}`
-            : "/fallback.jpg"
-        }
-        alt={m?.title}
-        className={`absolute inset-0 w-full h-full object-cover z-[2] transition-opacity duration-700 ${
-          bgVisible ? "opacity-100" : "opacity-0"
-        }`}
-      />
+          <img
+            key={current}
+            src={
+              m?.backdrop_path
+                ? `https://image.tmdb.org/t/p/original${m.backdrop_path}`
+                : "/fallback.jpg"
+            }
+            alt={m?.title}
+            className={`absolute inset-0 w-full h-full object-cover z-[2] transition-opacity duration-700 ${bgVisible ? "opacity-100" : "opacity-0"
+              }`}
+          />
 
-      {/* ── Gradient Overlays ── */}
-      <div className="absolute inset-0 z-[3] bg-gradient-to-r from-black/90 md:from-black/80 via-black/40 to-transparent" />
-      <div className="absolute inset-0 z-[3] bg-gradient-to-t from-black/90 md:from-black/80 via-transparent to-black/30" />
+          {/* ── Gradient Overlays ── */}
+          <div className="absolute inset-0 z-[3] bg-gradient-to-r from-black/90 md:from-black/80 via-black/40 to-transparent" />
+          <div className="absolute inset-0 z-[3] bg-gradient-to-t from-black/90 md:from-black/80 via-transparent to-black/30" />
 
-      {/* ── Hero Info ── */}
-      <LeftSide m={m || {}} infoVisible={infoVisible} />
+          {/* ── Hero Info ── */}
+          <LeftSide m={m || {}} infoVisible={infoVisible} />
 
-      {/* ── Thumbnail Strip (bottom) ── */}
-      <ThumbnailStrip
-        stripRef={stripRef}
-        current={current}
-        goTo={goTo}
-        thumbRefs={thumbRefs}
-        timerRef={timerRef}
-        handleThumb={handleThumb}
-        trendMovies={trendMovies}
-      />
+          {/* ── Thumbnail Strip (bottom) ── */}
+          <ThumbnailStrip
+            stripRef={stripRef}
+            current={current}
+            goTo={goTo}
+            thumbRefs={thumbRefs}
+            timerRef={timerRef}
+            handleThumb={handleThumb}
+            trendMovies={trendMovies}
+          />
 
-      {/* ── Progress Bar ── */}
-      <div className="absolute bottom-0 left-0 right-0 z-[8] h-[2px] bg-white/10">
-        <div
-          className="h-full bg-yellow-400 transition-none"
-          style={{ width: `${progress.toFixed(1)}%` }}
-        />
-      </div>
-    </div>
+          {/* ── Progress Bar ── */}
+          <div className="absolute bottom-0 left-0 right-0 z-[8] h-[2px] bg-white/10">
+            <div
+              className="h-full bg-yellow-400 transition-none"
+              style={{ width: `${progress.toFixed(1)}%` }}
+            />
+          </div>
+        </div>
+      )
+      }
+
+    </div >
   );
 }

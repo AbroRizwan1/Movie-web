@@ -41,16 +41,16 @@ const Overview = ({ activeTab, movieData, StarRating }) => {
               <div className="relative rounded-2xl overflow-hidden aspect-video bg-zinc-900 group cursor-pointer">
                 <img
                   src={
-                    movieData.poster_path
-                      ? `https://image.tmdb.org/t/p/original${movieData.poster_path}`
+                    movieData?.poster_path
+                      ? `https://image.tmdb.org/t/p/original${movieData?.poster_path}`
                       : "/fallback.jpg"
                   }
-                  alt={movieData.title}
+                  alt={movieData?.title}
                   className="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <button
-                    onClick={() => handleTrailerClick(movieData.id)}
+                    onClick={() => handleTrailerClick(movieData?.id)}
                     className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-amber-400 
                flex items-center justify-center shadow-xl shadow-amber-400/30 
                group-hover:scale-110 active:scale-95 transition-transform"

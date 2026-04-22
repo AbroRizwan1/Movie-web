@@ -3,6 +3,8 @@ import Main from "./Main";
 import { Viewpage, getGenres } from "../../Service/Api";
 import { useParams } from "react-router";
 import Heading from "../../Components/Heading";
+import Loader from "../../Components/Loader";
+import ErrorMessage from "../../Components/ErrorMessage";
 
 const StarRating = ({ vote_average }) => {
   const stars = Math.round(vote_average / 2);
@@ -32,27 +34,45 @@ export default function ViewMovies() {
 
   const [movieData, setMovieData] = useState(null);
 
-  useEffect(() => {
-    const fetchMovieDetail = async () => {
+  const [loading, setloading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      setloading(true);
+      setError(null);
+
       const data = await Viewpage(id);
       setMovieData(data);
-    };
-    fetchMovieDetail();
+
+    } catch (error) {
+      setError(error?.message || "Something went wrong");
+    } finally {
+      setloading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
   }, [id]);
+
+
 
   return (
     <div>
-      {!movieData ? (
-        <div className="text-center text-zinc-500">Loading...</div>
+      {loading ? (
+        <Loader variant="reel" text="Loading movies..." fullscreen />
+      ) : error ? (
+        <ErrorMessage message={error} variant="fullscreen" onRetry={fetchData} />
       ) : (
-        <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans">
+        <div className="min-h-screen bg-zinc-950  text-zinc-100 font-sans">
           {/* ── HERO ── */}
 
           <div className="relative h-[75vh] min-h-[480px] overflow-hidden">
             <img
               src={
-                movieData.backdrop_path
-                  ? `https://image.tmdb.org/t/p/original${movieData.backdrop_path}`
+                movieData?.backdrop_path
+                  ? `https://image.tmdb.org/t/p/original${movieData?.backdrop_path}`
                   : "/fallback.jpg"
               }
               alt={movieData?.title}
@@ -84,7 +104,7 @@ export default function ViewMovies() {
                 <div className="flex-1 space-y-3">
                   <div className="flex flex-wrap items-center gap-2 text-xs">
                     <span className="px-2 py-0.5 rounded border border-zinc-600 text-zinc-400">
-                      {movieData?.vote_average.toFixed(1)} / 10
+                      {movieData?.vote_average.toFixed(1)}
                     </span>
                     <span className="text-zinc-500">
                       {movieData?.release_date}
@@ -108,9 +128,9 @@ export default function ViewMovies() {
                   </p>
 
                   <div className="flex flex-wrap gap-2 pt-1">
-                    {movieData?.genres.map((g) => (
+                    {movieData?.genres.map((g, index) => (
                       <span
-                        key={g}
+                        key={index}
                         className="px-3 py-1 rounded-full bg-zinc-800 text-zinc-300 text-xs font-medium border border-zinc-700"
                       >
                         {g.name}
